@@ -27,9 +27,3 @@ print(name)
 print(acc)
 print(mods)
 print(pp)
-
-"""
-for div in soup.findAll('div', attrs={'class':'play-detail-list u-relative'}):
-	name = div.find('div', attrs={'class': 'play-detail__title'})
-	acc = div.find('div', attrs={'class': 'play-detail__accuracy'})
-"""
