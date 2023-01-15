@@ -1,9 +1,13 @@
 from bs4 import BeautifulSoup
-import pandas
 from selenium import webdriver
 
+import pandas
+
+import math
 import sys
 
+
+# Gets the top plays given an id
 def getTopPlays(id):
 	driver = webdriver.Chrome("/usr/lib/chromium-browser/chromedriver")
 
@@ -26,14 +30,28 @@ def getTopPlays(id):
 	print(mods)
 	print(pp)
 
-def main(player_id):
-	getTopPlays(player_id)
+# Returns a player's rank given their id
+def getPlayerRank(id):
+    driver = webdriver.Chrome("/usr/lib/chromium-browser/chromedriver")
+
+    driver.get(f'https://osu.ppy.sh/users/{id}')
+
+    content = driver.page_source
+    soup = BeautifulSoup(content)
+
+    print(soup.find('div', attrs={'class':'value-display__value'}).text)
+
+# Returns top plays of players within 10% of a given rank
+def getIds(id):
+    lower = math.floor(getPlayerRank(id)*1.1)  # Players worse than
+    higher = math.ceil(getPlayerRank(id)*0.9)  # Players better than
+
+    print(lower)
+    print(higher)
+
+def main():
+    getIds("SrChispa")
 
 if __name__ == "__main__":
-	args = sys.argv
-
-	if len(args) != 2:
-		print(f'Wrong number of arguments: Expected 1, received {len(args)-1}')
-	else:
-		main(args[1])
+    main()
 
