@@ -13,5 +13,6 @@ driver.get("https://osu.ppy.sh/users/11403312")
 
 content = driver.page_source
 soup = BeautifulSoup(content)
-for i in soup.findAll('a', href=True, attrs={'class':'play-detail-list u-relative'}):
-    name=a.find('div', attrs={'class':})
+for a in soup.findAll(attrs={'class':'play-detail play-detail--highlightable'}):
+    name = a.find('div', attrs={'class':'play-detail__title u-ellipsis-overflow'})
+    plays.append(name.text)
