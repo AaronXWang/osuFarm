@@ -3,7 +3,15 @@ import pandas
 from selenium import webdriver
 
 driver = webdriver.Chrome("/usr/lib/chromium-browser/chromedriver")
-listings = []
-prices = []
 
-driver.get("https://www.pathofexile.com/trade/exchange/Sanctum/Nn8Vt0")
+plays = []
+accuracy = []
+mods = []
+pp = []
+
+driver.get("https://osu.ppy.sh/users/11403312")
+
+content = driver.page_source
+soup = BeautifulSoup(content)
+for i in soup.findAll('a', href=True, attrs={'class':'play-detail-list u-relative'}):
+    name=a.find('div', attrs={'class':})
