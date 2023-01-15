@@ -39,7 +39,7 @@ def getPlayerRank(id):
     content = driver.page_source
     soup = BeautifulSoup(content)
 
-    print(soup.find('div', attrs={'class':'value-display__value'}).text)
+    return int(soup.find('div', attrs={'class':'value-display__value'}).text[1:])
 
 # Returns top plays of players within 10% of a given rank
 def getIds(id):
