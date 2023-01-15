@@ -18,13 +18,15 @@ playLists = soup.findAll('div', attrs={'class':'play-detail-list u-relative'})
 
 topPlays = playLists[1];
 
-print(topPlays)
-
 name = topPlays.findAll('a', attrs={'class': 'play-detail__title'})
 acc = topPlays.findAll('span', attrs={'class': 'play-detail__accuracy'})
+mods = topPlays.findAll('div', attrs={'class': 'mod'})
+pp = topPlays.findAll('div', attrs={'class': 'play-detail__pp'})
 
 print(name)
 print(acc)
+print(mods)
+print(pp)
 
 """
 for div in soup.findAll('div', attrs={'class':'play-detail-list u-relative'}):
