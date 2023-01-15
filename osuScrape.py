@@ -18,10 +18,10 @@ playLists = soup.findAll('div', attrs={'class':'play-detail-list u-relative'})
 
 topPlays = playLists[1];
 
-name = topPlays.findAll('a', attrs={'class': 'play-detail__title'})
-acc = topPlays.findAll('span', attrs={'class': 'play-detail__accuracy'})
-mods = topPlays.findAll('div', attrs={'class': 'mod'})
-pp = topPlays.findAll('div', attrs={'class': 'play-detail__pp'})
+name = [t.getText() for t in topPlays.findAll('a', attrs={'class': 'play-detail__title'})]
+acc = [t.getText() for t in topPlays.findAll('span', attrs={'class': 'play-detail__accuracy'})]
+mods = [t.get('data-acronym') for t in topPlays.findAll('div', attrs={'class': 'mod'})]
+pp = [t.getText() for t in topPlays.findAll('div', attrs={'class': 'play-detail__pp'})]
 
 print(name)
 print(acc)
