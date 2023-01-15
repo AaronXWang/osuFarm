@@ -7,11 +7,6 @@ import sys
 def getTopPlays(id):
 	driver = webdriver.Chrome("/usr/lib/chromium-browser/chromedriver")
 
-	plays = []
-	accuracy = []
-	mods = []
-	pp = []
-
 	driver.get(f'https://osu.ppy.sh/users/{id}')
 
 	content = driver.page_source
@@ -21,16 +16,15 @@ def getTopPlays(id):
 
 	topPlays = playLists[1];
 
-	name = [t.getText() for t in topPlays.findAll('a', attrs={'class': 'play-detail__title'})]
-	acc = [t.getText() for t in topPlays.findAll('span', attrs={'class': 'play-detail__accuracy'})]
+	plays = [t.getText() for t in topPlays.findAll('a', attrs={'class': 'play-detail__title'})]
+	accuracy = [t.getText() for t in topPlays.findAll('span', attrs={'class': 'play-detail__accuracy'})]
 	mods = [t.get('data-acronym') for t in topPlays.findAll('div', attrs={'class': 'mod'})]
 	pp = [t.getText() for t in topPlays.findAll('div', attrs={'class': 'play-detail__pp'})]
 
-	print(name)
-	print(acc)
+	print(plays)
+	print(accuracy)
 	print(mods)
 	print(pp)
-
 
 def main(player_id):
 	getTopPlays(player_id)
